@@ -4,6 +4,9 @@ import Keyboard from "./components/Keyboard";
 import { boardDefault, generateWordSet } from "./Words";
 import React, { useState, createContext, useEffect } from "react";
 import GameOver from "./components/GameOver";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export const AppContext = createContext();
 
@@ -44,7 +47,17 @@ function App() {
       // Add the word to the set of submitted words
       setSubmittedWords(prev => new Set(prev).add(currWord.toLowerCase()));
     } else {
-      alert("Word not found");
+      // Show toast notification and shake the board
+      shakeBoard();
+      toast.error("Word not in list", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
 
     if (currWord === correctWord) {
@@ -77,8 +90,20 @@ function App() {
     });
   };
 
+  const shakeBoard = () => {
+    // Add CSS class to shake the board
+    const boardElement = document.querySelector('.board');
+    boardElement.classList.add('shake');
+
+    // Remove the shake class after a delay
+    setTimeout(() => {
+      boardElement.classList.remove('shake');
+    }, 1000); // Adjust the delay as needed
+  };
+
   return (
     <div className="App">
+      <ToastContainer />
       <nav>
         <h1>Wordle</h1>
       </nav>
