@@ -4,14 +4,12 @@ import Keyboard from "./components/Keyboard";
 import { boardDefault, generateWordSet } from "./Words";
 import React, { useState, createContext, useEffect } from "react";
 import GameOver from "./components/GameOver";
-<<<<<<< HEAD
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
 
-=======
+
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
->>>>>>> 8a1510c73f4f1b0b53e1ae7d8fbd19635d0d7014
+
 
 export const AppContext = createContext();
 
